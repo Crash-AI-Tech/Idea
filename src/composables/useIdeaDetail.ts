@@ -1,6 +1,6 @@
-// filepath: /Users/nsaviour/Project/WebProject/Idea/src/composables/useIdeaDetail.ts
 import { ref, onMounted, computed } from 'vue'
 import type { Database } from '~/types/supabase'
+import { processTags } from '~/utils/tagsHelper'
 
 /**
  * 提供点子详情页面所需的数据和方法
@@ -57,6 +57,11 @@ export function useIdeaDetail(ideaId: string) {
       
       if (err) throw err
       if (!data) throw new Error('未找到该点子')
+      
+      // 确保标签被正确处理
+      if (data.tags) {
+        data.tags = processTags(data.tags);
+      }
       
       idea.value = data
       

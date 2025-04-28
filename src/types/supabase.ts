@@ -16,6 +16,7 @@ export interface Database {
           description: string
           user_id: string
           created_at: string
+          tags: string[] | null
         }
         Insert: {
           id?: number
@@ -23,6 +24,7 @@ export interface Database {
           description: string
           user_id: string
           created_at?: string
+          tags?: string[] | null
         }
         Update: {
           id?: number
@@ -30,6 +32,7 @@ export interface Database {
           description?: string
           user_id?: string
           created_at?: string
+          tags?: string[] | null
         }
       }
       comments: {

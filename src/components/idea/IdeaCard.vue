@@ -16,9 +16,9 @@
     <h1 class="text-3xl font-bold text-tech-gray-800 mb-4">{{ idea.title }}</h1>
     
     <!-- 标签 -->
-    <div v-if="idea.tags && idea.tags.length > 0" class="flex flex-wrap gap-2 mb-4">
+    <div v-if="processedTags.length > 0" class="flex flex-wrap gap-2 mb-4">
       <span 
-        v-for="tag in idea.tags" 
+        v-for="tag in processedTags" 
         :key="tag" 
         class="inline-block px-3 py-1 text-sm bg-light-green text-primary-green rounded-full"
       >
@@ -64,11 +64,12 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { useI18n } from '#imports'
+import { useI18n, computed } from '#imports'
+import { processTags } from '~/utils/tagsHelper'
 
 const { t } = useI18n()
 
-defineProps({
+const props = defineProps({
   idea: {
     type: Object,
     required: true
@@ -102,6 +103,11 @@ defineProps({
     required: true
   }
 })
+
+// 计算属性：处理标签数据，确保它总是一个字符串数组
+const processedTags = computed(() => {
+  return processTags(props.idea.tags);
+});
 
 const emit = defineEmits(['like', 'comment', 'delete'])
 

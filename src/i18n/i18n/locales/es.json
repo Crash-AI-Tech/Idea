@@ -11,7 +11,14 @@
     "footer": {
       "about": "Acerca de",
       "contact": "Contacto",
-      "privacy": "Privacidad"
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "followUs": "Síguenos",
+      "slogan": "Comparte tus ideas de negocio, conéctate con mentes innovadoras",
+      "companyName": "Jade Bamboo Intelligence",
+      "rights": "Todos los derechos reservados",
+      "shareCta": "¿Tienes una idea de negocio? ¡Compártela con la comunidad ahora!",
+      "shareButton": "Compartir mi idea"
     }
   },
   "home": {

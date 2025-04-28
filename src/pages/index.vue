@@ -134,9 +134,9 @@
             <h2 class="text-xl font-bold text-tech-gray-800 mb-2 hover:text-primary-green transition-colors">{{ idea.title }}</h2>
             
             <!-- 标签 -->
-            <div v-if="idea.tags && idea.tags.length > 0" class="flex flex-wrap gap-1 mb-3">
+            <div v-if="processTags(idea.tags).length > 0" class="flex flex-wrap gap-1 mb-3">
               <span 
-                v-for="tag in idea.tags" 
+                v-for="tag in processTags(idea.tags)" 
                 :key="tag" 
                 class="inline-block px-2 py-1 text-xs bg-light-green text-primary-green rounded-full"
               >
@@ -196,6 +196,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useI18n } from '#imports'
 import type { Database } from '~/types/supabase'
+import { processTags } from '~/utils/tagsHelper'
 
 const { t, locale } = useI18n()
 const user = useSupabaseUser()
@@ -218,9 +219,10 @@ const filteredIdeas = computed(() => {
   
   // 标签筛选
   if (selectedTag.value) {
-    result = result.filter(idea => 
-      idea.tags && idea.tags.includes(selectedTag.value)
-    )
+    result = result.filter(idea => {
+      const tags = processTags(idea.tags);
+      return tags.includes(selectedTag.value);
+    });
   }
   
   // 排序
@@ -263,8 +265,8 @@ async function fetchIdeas() {
         ...idea,
         likes_count: idea.likes?.[0]?.count || 0,
         comments_count: idea.comments?.[0]?.count || 0,
-        // 确保tags是数组
-        tags: idea.tags || []
+        // 确保tags是正确的格式
+        tags: idea.tags // 标签将由processTags函数处理
       }))
       
       collectAllTags()
@@ -281,9 +283,8 @@ function collectAllTags() {
   const tagSet = new Set<string>()
   
   ideas.value.forEach(idea => {
-    if (idea.tags && Array.isArray(idea.tags)) {
-      idea.tags.forEach((tag: string) => tagSet.add(tag))
-    }
+    const tags = processTags(idea.tags);
+    tags.forEach(tag => tagSet.add(tag));
   })
   
   allTags.value = Array.from(tagSet)

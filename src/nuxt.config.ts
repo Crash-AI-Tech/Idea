@@ -53,14 +53,15 @@ export default defineNuxtConfig({
       }
     ],
     lazy: true, // 懒加载语言文件
-    langDir: './i18n/locales/', // 使用相对路径
+    langDir: './i18n/locales/', // 更新为正确的语言文件目录路径
     defaultLocale: 'zh', // 设置默认语言为中文
     detectBrowserLanguage: { // 浏览器语言检测
       useCookie: true, // 使用 cookie 存储用户选择
       cookieKey: 'i18n_redirected', // cookie 名称
       redirectOn: 'root',  // 仅在根路径 / 时重定向
     },
-    vueI18n: './i18n.config.ts' // 使用项目根目录下的配置文件
+    vueI18n: './i18n.config.ts', // 使用项目根目录下的配置文件
+    baseUrl: 'https://ideahub.example.com' // 添加baseUrl以解决SEO警告
   },
   // 添加全局 CSS (如果需要，例如 RTL)
   css: [

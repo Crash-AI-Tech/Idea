@@ -11,7 +11,14 @@
     "footer": {
       "about": "关于我们",
       "contact": "联系我们",
-      "privacy": "隐私政策"
+      "privacy": "隐私政策",
+      "terms": "使用条款",
+      "followUs": "关注我们",
+      "slogan": "分享你的创业灵感，连接创新思维",
+      "companyName": "玉竹智能",
+      "rights": "保留所有权利",
+      "shareCta": "有一个创业想法？立即与社区分享！",
+      "shareButton": "分享我的点子"
     }
   },
   "home": {

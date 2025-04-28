@@ -90,6 +90,7 @@
 import { ref } from 'vue'
 import { useI18n } from '#imports'
 import type { Database } from '~/types/supabase'
+import { normalizeTags } from '~/utils/tagsHelper'
 
 definePageMeta({
   middleware: 'auth' // 确保只有登录用户可以访问此页面
@@ -144,7 +145,7 @@ const submitIdea = async () => {
         title: title.value.trim(),
         description: description.value.trim(),
         user_id: user.value.id,
-        tags: tags.value.length > 0 ? tags.value : null
+        tags: tags.value.length > 0 ? normalizeTags(tags.value) : null
       })
       .select()
 
