@@ -21,15 +21,6 @@
             {{ $t('app.header.home') }}
           </NuxtLink>
           
-          <NuxtLink 
-            v-if="user"
-            to="/ideas/new" 
-            class="text-tech-gray-600 hover:text-primary-green px-3 py-2 rounded-md transition-colors duration-200"
-            active-class="text-primary-green font-medium"
-          >
-            {{ $t('app.header.newIdea') }}
-          </NuxtLink>
-          
           <!-- 语言切换器 - 放在用户账户/登录按钮的左侧 -->
           <LanguageSwitcher />
           
