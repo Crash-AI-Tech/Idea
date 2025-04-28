@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4 py-8">
     <!-- 头部区域 -->
     <div class="flex justify-between items-center mb-8">
-      <h1 class="text-3xl font-bold text-tech-gray-800">点子库</h1>
+      <h1 class="text-3xl font-bold text-tech-gray-800">{{ $t('home.title') }}</h1>
       <NuxtLink 
         to="/ideas/new" 
         class="bg-primary-green hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center"
@@ -11,21 +11,21 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
         </svg>
-        添加点子
+        {{ $t('idea.newTitle') }}
       </NuxtLink>
     </div>
     
     <!-- 标签和筛选区域 -->
     <div class="mb-6 bg-tech-gray-50 p-4 rounded-lg border border-tech-gray-200">
       <div class="mb-4">
-        <h3 class="text-sm font-medium text-tech-gray-700 mb-2">按标签筛选</h3>
+        <h3 class="text-sm font-medium text-tech-gray-700 mb-2">{{ $t('home.filterByTag') }}</h3>
         <div class="flex flex-wrap gap-2">
           <button
             @click="selectedTag = ''"
             class="px-3 py-1 rounded-full text-sm"
             :class="!selectedTag ? 'bg-primary-green text-white' : 'bg-tech-gray-100 text-tech-gray-700 hover:bg-tech-gray-200'"
           >
-            全部
+            {{ $t('home.allTags') }}
           </button>
           <button
             v-for="tag in allTags"
@@ -40,28 +40,28 @@
       </div>
       
       <div>
-        <h3 class="text-sm font-medium text-tech-gray-700 mb-2">排序方式</h3>
+        <h3 class="text-sm font-medium text-tech-gray-700 mb-2">{{ $t('home.sortBy') }}</h3>
         <div class="flex flex-wrap gap-2">
           <button
             @click="sortBy = 'newest'"
             class="px-3 py-1 rounded-full text-sm"
             :class="sortBy === 'newest' ? 'bg-primary-green text-white' : 'bg-tech-gray-100 text-tech-gray-700 hover:bg-tech-gray-200'"
           >
-            最新发布
+            {{ $t('home.sortOptions.newest') }}
           </button>
           <button
             @click="sortBy = 'popular'"
             class="px-3 py-1 rounded-full text-sm"
             :class="sortBy === 'popular' ? 'bg-primary-green text-white' : 'bg-tech-gray-100 text-tech-gray-700 hover:bg-tech-gray-200'"
           >
-            最多点赞
+            {{ $t('home.sortOptions.mostLiked') }}
           </button>
           <button
             @click="sortBy = 'comments'"
             class="px-3 py-1 rounded-full text-sm"
             :class="sortBy === 'comments' ? 'bg-primary-green text-white' : 'bg-tech-gray-100 text-tech-gray-700 hover:bg-tech-gray-200'"
           >
-            最多评论
+            {{ $t('home.sortOptions.mostCommented') }}
           </button>
         </div>
       </div>
@@ -70,7 +70,7 @@
     <!-- 加载状态 -->
     <div v-if="loading" class="text-center py-20">
       <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary-green"></div>
-      <p class="mt-2 text-tech-gray-600">加载中...</p>
+      <p class="mt-2 text-tech-gray-600">{{ $t('common.loading') }}</p>
     </div>
     
     <!-- 空状态 -->
@@ -79,9 +79,9 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
       <h3 class="text-xl font-semibold text-tech-gray-700 mb-2">
-        {{ selectedTag ? `没有包含"${selectedTag}"标签的点子` : '还没有点子' }}
+        {{ selectedTag ? $t('home.noIdeasWithTag', { tag: selectedTag }) : $t('home.noIdeas') }}
       </h3>
-      <p class="text-tech-gray-600 mb-6">{{ selectedTag ? '尝试选择其他标签或清除筛选条件' : '成为第一个分享点子的人吧！' }}</p>
+      <p class="text-tech-gray-600 mb-6">{{ selectedTag ? $t('home.tryOtherTag') : $t('home.beFirst') }}</p>
       
       <div class="space-x-3">
         <button 
@@ -89,7 +89,7 @@
           @click="selectedTag = ''"
           class="inline-block bg-tech-gray-100 hover:bg-tech-gray-200 text-tech-gray-700 font-medium py-2 px-6 rounded-md transition-colors duration-200"
         >
-          清除筛选
+          {{ $t('home.clearFilter') }}
         </button>
         
         <NuxtLink 
@@ -97,7 +97,7 @@
           class="inline-block bg-primary-green hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md transition-colors duration-200"
           v-if="user"
         >
-          添加第一个点子
+          {{ $t('home.addFirstIdea') }}
         </NuxtLink>
         
         <NuxtLink 
@@ -105,7 +105,7 @@
           class="inline-block bg-primary-green hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md transition-colors duration-200"
           v-else
         >
-          登录以添加点子
+          {{ $t('home.loginToAdd') }}
         </NuxtLink>
       </div>
     </div>
@@ -122,7 +122,7 @@
           v-if="user && idea.user_id === user.id"
           @click.prevent="confirmDeleteIdea(idea)"
           class="absolute top-2 right-2 bg-tech-gray-100 hover:bg-tech-gray-200 p-1.5 rounded-full text-tech-gray-600 hover:text-red-500 transition-colors duration-200 z-10"
-          title="删除点子"
+          :title="$t('idea.deleteButton')"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -171,20 +171,20 @@
     <!-- 删除确认对话框 -->
     <div v-if="showDeleteConfirm" class="fixed inset-0 bg-tech-gray-800 bg-opacity-50 flex items-center justify-center z-50">
       <div class="bg-tech-white p-6 rounded-lg shadow-xl max-w-md w-full">
-        <h3 class="text-lg font-semibold text-tech-gray-800 mb-3">确认删除</h3>
-        <p class="text-tech-gray-600 mb-4">你确定要删除点子"{{ ideaToDelete?.title }}"吗？此操作无法撤销。</p>
+        <h3 class="text-lg font-semibold text-tech-gray-800 mb-3">{{ $t('idea.deleteConfirmTitle') }}</h3>
+        <p class="text-tech-gray-600 mb-4">{{ $t('idea.deleteConfirmText', { title: ideaToDelete?.title }) }}</p>
         <div class="flex justify-end space-x-3">
           <button 
             @click="cancelDelete"
             class="px-4 py-2 rounded-md bg-tech-gray-100 text-tech-gray-700 hover:bg-tech-gray-200 transition-colors"
           >
-            取消
+            {{ $t('idea.cancelButton') }}
           </button>
           <button 
             @click="deleteIdea"
             class="px-4 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors"
           >
-            删除
+            {{ $t('idea.deleteButton') }}
           </button>
         </div>
       </div>
@@ -194,8 +194,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
+import { useI18n } from '#imports'
 import type { Database } from '~/types/supabase'
 
+const { t, locale } = useI18n()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient<Database>()
 const loading = ref(true)
@@ -290,7 +292,7 @@ function collectAllTags() {
 // 格式化日期
 function formatDate(dateString: string) {
   const date = new Date(dateString)
-  return date.toLocaleDateString('zh-CN', {
+  return date.toLocaleDateString(locale.value, {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
@@ -332,7 +334,7 @@ async function deleteIdea() {
     
   } catch (error) {
     console.error('Error deleting idea:', error)
-    alert('删除点子时出错')
+    alert(t('idea.deleteError'))
   }
 }
 </script>

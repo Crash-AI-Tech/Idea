@@ -1,0 +1,81 @@
+{
+  "app": {
+    "title": "创意中心",
+    "header": {
+      "home": "首页",
+      "newIdea": "新创意",
+      "login": "登录",
+      "register": "注册",
+      "logout": "退出"
+    },
+    "footer": {
+      "about": "关于我们",
+      "contact": "联系我们",
+      "privacy": "隐私政策"
+    }
+  },
+  "home": {
+    "title": "发现创意",
+    "subtitle": "探索并分享创新的想法。",
+    "sortBy": "排序方式：",
+    "sortOptions": {
+      "newest": "最新",
+      "mostLiked": "最受欢迎",
+      "mostCommented": "评论最多"
+    },
+    "noIdeas": "暂无创意。成为第一个分享创意的人！",
+    "filterByTag": "按标签筛选",
+    "allTags": "全部",
+    "noIdeasWithTag": "没有包含\"{tag}\"标签的创意",
+    "tryOtherTag": "尝试选择其他标签或清除筛选条件",
+    "beFirst": "成为第一个分享创意的人吧！",
+    "clearFilter": "清除筛选",
+    "addFirstIdea": "添加第一个创意",
+    "loginToAdd": "登录以添加创意"
+  },
+  "auth": {
+    "loginTitle": "登录",
+    "registerTitle": "创建账户",
+    "email": "电子邮箱",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "loginButton": "登录",
+    "registerButton": "注册",
+    "loginSuccess": "登录成功。",
+    "registerSuccess": "注册成功。请检查邮箱进行确认。",
+    "logoutSuccess": "退出成功。",
+    "loginPrompt": "已有账户？",
+    "registerPrompt": "没有账户？",
+    "loginLink": "在此登录",
+    "registerLink": "在此注册"
+  },
+  "idea": {
+    "newTitle": "创建新创意",
+    "editTitle": "编辑创意",
+    "titleLabel": "标题",
+    "descriptionLabel": "描述",
+    "submitButton": "提交创意",
+    "updateButton": "更新创意",
+    "deleteButton": "删除创意",
+    "deleteConfirmTitle": "确认删除",
+    "deleteConfirmText": "确定要删除这个创意\"{title}\"吗？此操作无法撤销。",
+    "cancelButton": "取消",
+    "confirmButton": "确认",
+    "commentsTitle": "评论",
+    "addCommentPlaceholder": "添加评论...",
+    "submitCommentButton": "提交评论",
+    "likeButton": "点赞",
+    "unlikeButton": "取消点赞",
+    "commentButton": "评论",
+    "by": "作者",
+    "you": "你",
+    "loadError": "加载创意失败。",
+    "notFound": "未找到该创意。",
+    "deleteError": "删除创意时出错"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了。",
+    "back": "返回"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "app": {
+    "title": "Idea Hub (ES)",
+    "header": {
+      "home": "Inicio",
+      "newIdea": "Nueva Idea",
+      "login": "Iniciar Sesión",
+      "register": "Registrarse",
+      "logout": "Cerrar Sesión"
+    },
+    "footer": {
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "privacy": "Privacidad"
+    }
+  },
+  "home": {
+    "title": "Explorar Ideas",
+    "subtitle": "Descubre y comparte ideas innovadoras.",
+    "sortBy": "Ordenar por:",
+    "sortOptions": {
+      "newest": "Más recientes",
+      "mostLiked": "Más gustados",
+      "mostCommented": "Más comentados"
+    },
+    "noIdeas": "Aún no hay ideas. ¡Sé el primero en compartir una!",
+    "filterByTag": "Filtrar por Etiqueta",
+    "allTags": "Todos",
+    "noIdeasWithTag": "No hay ideas con la etiqueta \"{tag}\"",
+    "tryOtherTag": "Intenta seleccionar otra etiqueta o limpiar el filtro",
+    "beFirst": "¡Sé el primero en compartir una idea!",
+    "clearFilter": "Limpiar Filtro",
+    "addFirstIdea": "Añadir Primera Idea",
+    "loginToAdd": "Inicia Sesión para Añadir una Idea"
+  },
+  "auth": {
+    "loginTitle": "Iniciar Sesión",
+    "registerTitle": "Crear Cuenta",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "loginButton": "Iniciar Sesión",
+    "registerButton": "Registrarse",
+    "loginSuccess": "Inicio de sesión exitoso.",
+    "registerSuccess": "Registro exitoso. Por favor revisa tu correo para confirmar.",
+    "logoutSuccess": "Cierre de sesión exitoso.",
+    "loginPrompt": "¿Ya tienes cuenta?",
+    "registerPrompt": "¿No tienes cuenta?",
+    "loginLink": "Inicia sesión aquí",
+    "registerLink": "Regístrate aquí"
+  },
+  "idea": {
+    "newTitle": "Crear Nueva Idea",
+    "editTitle": "Editar Idea",
+    "titleLabel": "Título",
+    "descriptionLabel": "Descripción",
+    "submitButton": "Enviar Idea",
+    "updateButton": "Actualizar Idea",
+    "deleteButton": "Eliminar Idea",
+    "deleteConfirmTitle": "Confirmar Eliminación",
+    "deleteConfirmText": "¿Estás seguro de que quieres eliminar \"{title}\"? Esta acción no se puede deshacer.",
+    "cancelButton": "Cancelar",
+    "confirmButton": "Confirmar",
+    "commentsTitle": "Comentarios",
+    "addCommentPlaceholder": "Añade tu comentario...",
+    "submitCommentButton": "Enviar Comentario",
+    "likeButton": "Me gusta",
+    "unlikeButton": "No me gusta",
+    "commentButton": "Comentar",
+    "by": "Por",
+    "you": "ti",
+    "loadError": "Error al cargar la idea.",
+    "notFound": "Idea no encontrada.",
+    "deleteError": "Error al eliminar la idea"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ocurrió un error.",
+    "back": "Volver"
+  }
+}

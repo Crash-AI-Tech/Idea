@@ -1,0 +1,81 @@
+{
+  "app": {
+    "title": "Idea Hub",
+    "header": {
+      "home": "Home",
+      "newIdea": "New Idea",
+      "login": "Login",
+      "register": "Register",
+      "logout": "Logout"
+    },
+    "footer": {
+      "about": "About",
+      "contact": "Contact",
+      "privacy": "Privacy"
+    }
+  },
+  "home": {
+    "title": "Explore Ideas",
+    "subtitle": "Discover and share innovative ideas.",
+    "sortBy": "Sort By:",
+    "sortOptions": {
+      "newest": "Newest",
+      "mostLiked": "Most Liked",
+      "mostCommented": "Most Commented"
+    },
+    "noIdeas": "No ideas yet. Be the first to share one!",
+    "filterByTag": "Filter by Tag",
+    "allTags": "All",
+    "noIdeasWithTag": "No ideas with tag \"{tag}\"",
+    "tryOtherTag": "Try selecting another tag or clear the filter",
+    "beFirst": "Be the first to share an idea!",
+    "clearFilter": "Clear Filter",
+    "addFirstIdea": "Add First Idea",
+    "loginToAdd": "Login to Add an Idea"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "registerTitle": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "loginSuccess": "Login successful.",
+    "registerSuccess": "Registration successful. Please check your email for confirmation.",
+    "logoutSuccess": "Logout successful.",
+    "loginPrompt": "Already have an account?",
+    "registerPrompt": "Don't have an account?",
+    "loginLink": "Login here",
+    "registerLink": "Register here"
+  },
+  "idea": {
+    "newTitle": "Create New Idea",
+    "editTitle": "Edit Idea",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "submitButton": "Submit Idea",
+    "updateButton": "Update Idea",
+    "deleteButton": "Delete Idea",
+    "deleteConfirmTitle": "Confirm Deletion",
+    "deleteConfirmText": "Are you sure you want to delete \"{title}\"? This action cannot be undone.",
+    "cancelButton": "Cancel",
+    "confirmButton": "Confirm",
+    "commentsTitle": "Comments",
+    "addCommentPlaceholder": "Add your comment...",
+    "submitCommentButton": "Submit Comment",
+    "likeButton": "Like",
+    "unlikeButton": "Unlike",
+    "commentButton": "Comment",
+    "by": "By",
+    "you": "you",
+    "loadError": "Failed to load idea.",
+    "notFound": "Idea not found.",
+    "deleteError": "Error deleting idea"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred.",
+    "back": "Back"
+  }
+}

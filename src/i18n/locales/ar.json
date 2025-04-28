@@ -1,0 +1,72 @@
+{
+  "app": {
+    "title": "مركز الأفكار",
+    "header": {
+      "home": "الرئيسية",
+      "newIdea": "فكرة جديدة",
+      "login": "تسجيل الدخول",
+      "register": "التسجيل",
+      "logout": "تسجيل الخروج"
+    },
+    "footer": {
+      "about": "حول",
+      "contact": "اتصل بنا",
+      "privacy": "الخصوصية"
+    }
+  },
+  "home": {
+    "title": "استكشاف الأفكار",
+    "subtitle": "اكتشف وشارك الأفكار المبتكرة.",
+    "sortBy": "الترتيب حسب:",
+    "sortOptions": {
+      "newest": "الأحدث",
+      "mostLiked": "الأكثر إعجابًا",
+      "mostCommented": "الأكثر تعليقًا"
+    },
+    "noIdeas": "لا توجد أفكار بعد. كن أول من يشارك فكرة!"
+  },
+  "auth": {
+    "loginTitle": "تسجيل الدخول",
+    "registerTitle": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "loginButton": "تسجيل الدخول",
+    "registerButton": "التسجيل",
+    "loginSuccess": "تم تسجيل الدخول بنجاح.",
+    "registerSuccess": "تم التسجيل بنجاح. يرجى التحقق من بريدك الإلكتروني للتأكيد.",
+    "logoutSuccess": "تم تسجيل الخروج بنجاح.",
+    "loginPrompt": "لديك حساب بالفعل؟",
+    "registerPrompt": "ليس لديك حساب؟",
+    "loginLink": "تسجيل الدخول هنا",
+    "registerLink": "التسجيل هنا"
+  },
+  "idea": {
+    "newTitle": "إنشاء فكرة جديدة",
+    "editTitle": "تعديل الفكرة",
+    "titleLabel": "العنوان",
+    "descriptionLabel": "الوصف",
+    "submitButton": "إرسال الفكرة",
+    "updateButton": "تحديث الفكرة",
+    "deleteButton": "حذف الفكرة",
+    "deleteConfirmTitle": "تأكيد الحذف",
+    "deleteConfirmText": "هل أنت متأكد من رغبتك في حذف هذه الفكرة؟ لا يمكن التراجع عن هذا الإجراء.",
+    "cancelButton": "إلغاء",
+    "confirmButton": "تأكيد",
+    "commentsTitle": "التعليقات",
+    "addCommentPlaceholder": "أضف تعليقك...",
+    "submitCommentButton": "إرسال التعليق",
+    "likeButton": "إعجاب",
+    "unlikeButton": "إلغاء الإعجاب",
+    "commentButton": "تعليق",
+    "by": "بواسطة",
+    "you": "أنت",
+    "loadError": "فشل في تحميل الفكرة.",
+    "notFound": "الفكرة غير موجودة."
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ.",
+    "back": "العودة"
+  }
+}
