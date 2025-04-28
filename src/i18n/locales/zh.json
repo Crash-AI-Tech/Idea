@@ -1,9 +1,9 @@
 {
   "app": {
-    "title": "创意中心",
+    "title": "点子中心",
     "header": {
       "home": "首页",
-      "newIdea": "新创意",
+      "newIdea": "新点子",
       "login": "登录",
       "register": "注册",
       "logout": "退出"
@@ -15,7 +15,7 @@
     }
   },
   "home": {
-    "title": "发现创意",
+    "title": "发现点子",
     "subtitle": "探索并分享创新的想法。",
     "sortBy": "排序方式：",
     "sortOptions": {
@@ -23,15 +23,15 @@
       "mostLiked": "最受欢迎",
       "mostCommented": "评论最多"
     },
-    "noIdeas": "暂无创意。成为第一个分享创意的人！",
+    "noIdeas": "暂无点子。成为第一个分享点子的人！",
     "filterByTag": "按标签筛选",
     "allTags": "全部",
-    "noIdeasWithTag": "没有包含"{tag}"标签的创意",
+    "noIdeasWithTag": "没有包含"{tag}"标签的点子",
     "tryOtherTag": "尝试选择其他标签或清除筛选条件",
-    "beFirst": "成为第一个分享创意的人吧！",
+    "beFirst": "成为第一个分享点子的人吧！",
     "clearFilter": "清除筛选",
-    "addFirstIdea": "添加第一个创意",
-    "loginToAdd": "登录以添加创意"
+    "addFirstIdea": "添加第一个点子",
+    "loginToAdd": "登录以添加点子"
   },
   "auth": {
     "loginTitle": "登录",
@@ -43,39 +43,62 @@
     "registerButton": "注册",
     "loginSuccess": "登录成功。",
     "registerSuccess": "注册成功。请检查邮箱进行确认。",
+    "registerSuccessNoConfirm": "注册成功。您现在可以登录了。",
     "logoutSuccess": "退出成功。",
     "loginPrompt": "已有账户？",
     "registerPrompt": "没有账户？",
     "loginLink": "在此登录",
-    "registerLink": "在此注册"
+    "registerLink": "在此注册",
+    "passwordMismatch": "两次输入的密码不匹配",
+    "registerError": "注册时发生错误",
+    "registerUnknownError": "注册过程中发生未知错误",
+    "loginError": "登录时发生错误",
+    "loginWithGithub": "使用GitHub登录",
+    "or": "或"
   },
   "idea": {
-    "newTitle": "创建新创意",
-    "editTitle": "编辑创意",
+    "newTitle": "创建新点子",
+    "editTitle": "编辑点子",
     "titleLabel": "标题",
+    "titlePlaceholder": "输入你的点子标题",
     "descriptionLabel": "描述",
-    "submitButton": "提交创意",
-    "updateButton": "更新创意",
-    "deleteButton": "删除创意",
+    "descriptionPlaceholder": "详细描述你的点子...",
+    "tagsLabel": "标签",
+    "tagsPlaceholder": "添加标签 (回车确认)",
+    "addTagButton": "添加",
+    "tagsHelp": "添加相关标签，帮助其他人更容易找到你的点子",
+    "submitButton": "发布点子",
+    "updateButton": "更新点子",
+    "deleteButton": "删除点子",
     "deleteConfirmTitle": "确认删除",
-    "deleteConfirmText": "确定要删除这个创意"{title}"吗？此操作无法撤销。",
+    "deleteConfirmText": "确定要删除这个点子"{title}"吗？此操作无法撤销。",
     "cancelButton": "取消",
     "confirmButton": "确认",
     "commentsTitle": "评论",
-    "addCommentPlaceholder": "添加评论...",
+    "noComments": "暂无评论，成为第一个评论的人！",
+    "addComment": "发表评论",
+    "addCommentPlaceholder": "分享你的想法...",
     "submitCommentButton": "提交评论",
     "likeButton": "点赞",
-    "unlikeButton": "取消点赞",
+    "unlikeButton": "已点赞",
     "commentButton": "评论",
     "by": "作者",
     "you": "你",
-    "loadError": "加载创意失败。",
-    "notFound": "未找到该创意。",
-    "deleteError": "删除创意时出错"
+    "user": "用户",
+    "unknownUser": "未知用户",
+    "loadError": "加载点子失败。",
+    "notFound": "未找到该点子。",
+    "deleteError": "删除点子时出错",
+    "loginRequired": "请先登录",
+    "emptyFieldsError": "标题和描述都不能为空",
+    "createSuccess": "点子创建成功！",
+    "createError": "创建点子时出错",
+    "loginToComment": "登录后参与评论"
   },
   "common": {
     "loading": "加载中...",
     "error": "出错了。",
-    "back": "返回"
+    "back": "返回",
+    "cancel": "取消"
   }
 }
