@@ -51,9 +51,8 @@
         :comments="comments"
         :user="user"
         :comment-loading="commentLoading"
-        :new-comment="newComment"
         :format-date="formatDate"
-        @submit="submitComment"
+        @submit="handleCommentSubmit"
       />
     </template>
     
@@ -114,5 +113,15 @@ function focusCommentInput() {
       block: 'start' 
     })
   }
+}
+
+// 新增处理函数
+async function handleCommentSubmit(content: string) {
+  console.log('[id].vue: handleCommentSubmit received content:', content); // 添加日志
+  await submitComment(content); // 调用 composable 中的函数并传递内容
+  // 可以在这里添加评论成功后的逻辑，例如清空输入框（如果需要的话）
+  // if (commentSectionRef.value) {
+  //   commentSectionRef.value.commentContent = ''; // 这需要 CommentSection 暴露 commentContent 或提供清空方法
+  // }
 }
 </script>

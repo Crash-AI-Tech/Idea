@@ -22,10 +22,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "globby": "^13.2.2"
-    }
   }
 }

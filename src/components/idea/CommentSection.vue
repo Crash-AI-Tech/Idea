@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs } from 'vue'
+import { ref } from 'vue'
 import type { PropType } from 'vue'
 
 const props = defineProps({
@@ -69,10 +69,6 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  newComment: {
-    type: String,
-    default: ''
-  },
   formatDate: {
     type: Function,
     required: true
@@ -80,8 +76,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['submit'])
-const { newComment } = toRefs(props)
-const commentContent = ref(newComment.value)
+const commentContent = ref('')
 const commentInputRef = ref<HTMLTextAreaElement | null>(null)
 
 defineExpose({
@@ -89,6 +84,9 @@ defineExpose({
 })
 
 function onSubmit() {
+  console.log('CommentSection: onSubmit triggered. Emitting content:', commentContent.value);
+  if (!commentContent.value.trim()) return;
   emit('submit', commentContent.value)
+  commentContent.value = '';
 }
 </script>

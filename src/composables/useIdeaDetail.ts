@@ -19,7 +19,6 @@ export function useIdeaDetail(ideaId: string) {
   const comments = ref<any[]>([])
   const likeCount = ref(0)
   const isLiked = ref(false)
-  const newComment = ref('')
   const commentLoading = ref(false)
   const likeLoading = ref(false)
 
@@ -166,33 +165,47 @@ export function useIdeaDetail(ideaId: string) {
   }
 
   // 提交评论
-  async function submitComment() {
-    if (!user.value || !newComment.value.trim()) return
+  async function submitComment(content: string) {
+    console.log('useIdeaDetail: submitComment called with content:', content);
+    if (!user.value || !content.trim()) {
+      console.log('useIdeaDetail: submitComment aborted. User:', !!user.value, 'Content:', content.trim());
+      return
+    }
     if (commentLoading.value) return
-    
+
     try {
       commentLoading.value = true
-      
+      console.log('useIdeaDetail: Submitting comment to Supabase...');
+
       const { data, error: err } = await supabase
         .from('comments')
         .insert({
-          content: newComment.value.trim(),
+          content: content.trim(),
           idea_id: ideaId,
           user_id: user.value.id
         })
         .select()
-      
-      if (err) throw err
-      
-      if (data && data.length > 0) {
-        comments.value = [data[0], ...comments.value]
-        newComment.value = ''
+        .single()
+
+      if (err) {
+        console.error('useIdeaDetail: Supabase error:', err);
+        throw err
+      }
+
+      console.log('useIdeaDetail: Supabase response data:', data);
+
+      if (data) {
+        comments.value = [data, ...comments.value]
+        console.log('useIdeaDetail: Comment added successfully.');
+      } else {
+         console.warn('useIdeaDetail: No data returned after insert.');
       }
     } catch (err: any) {
       console.error('Error submitting comment:', err)
       alert('提交评论失败：' + err.message)
     } finally {
       commentLoading.value = false
+      console.log('useIdeaDetail: submitComment finished.');
     }
   }
 
@@ -277,7 +290,6 @@ export function useIdeaDetail(ideaId: string) {
     comments,
     likeCount,
     isLiked,
-    newComment,
     commentLoading,
     likeLoading,
     showDeleteConfirm,
