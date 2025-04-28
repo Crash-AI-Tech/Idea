@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4 py-8">
     <!-- 头部区域 -->
     <div class="flex justify-between items-center mb-8">
-      <h1 class="text-3xl font-bold text-tech-gray-800">创业点子库</h1>
+      <h1 class="text-3xl font-bold text-tech-gray-800">点子库</h1>
       <NuxtLink 
         to="/ideas/new" 
         class="bg-primary-green hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center"
@@ -81,7 +81,7 @@
       <h3 class="text-xl font-semibold text-tech-gray-700 mb-2">
         {{ selectedTag ? `没有包含"${selectedTag}"标签的点子` : '还没有点子' }}
       </h3>
-      <p class="text-tech-gray-600 mb-6">{{ selectedTag ? '尝试选择其他标签或清除筛选条件' : '成为第一个分享创业点子的人吧！' }}</p>
+      <p class="text-tech-gray-600 mb-6">{{ selectedTag ? '尝试选择其他标签或清除筛选条件' : '成为第一个分享点子的人吧！' }}</p>
       
       <div class="space-x-3">
         <button 

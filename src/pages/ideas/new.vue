@@ -10,7 +10,7 @@
           v-model="title" 
           required 
           class="shadow-sm appearance-none border border-tech-gray-300 rounded-md w-full py-2 px-3 bg-tech-white text-tech-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent"
-          placeholder="输入你的创业点子标题"
+          placeholder="输入你的点子标题"
         />
       </div>
       
@@ -22,7 +22,7 @@
           required 
           rows="5"
           class="shadow-sm appearance-none border border-tech-gray-300 rounded-md w-full py-2 px-3 bg-tech-white text-tech-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent"
-          placeholder="详细描述你的创业点子..."
+          placeholder="详细描述你的点子..."
         ></textarea>
       </div>
       
