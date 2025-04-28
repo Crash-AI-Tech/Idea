@@ -287,6 +287,19 @@ export function useIdeaDetail(ideaId: string) {
     })
   }
 
+  // 更新点子
+  function updateIdea(updatedIdea: any) {
+    if (!updatedIdea) return
+    
+    // 确保标签被正确处理
+    if (updatedIdea.tags) {
+      updatedIdea.tags = processTags(updatedIdea.tags);
+    }
+    
+    // 更新本地状态
+    idea.value = updatedIdea
+  }
+
   return {
     // 状态
     loading,
@@ -311,6 +324,7 @@ export function useIdeaDetail(ideaId: string) {
     confirmDeleteIdea,
     cancelDelete,
     deleteIdea,
-    formatDate
+    formatDate,
+    updateIdea
   }
 }

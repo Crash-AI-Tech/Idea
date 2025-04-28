@@ -76,6 +76,9 @@
     "tagsHelp": "添加相关标签，帮助其他人更容易找到你的点子",
     "submitButton": "发布点子",
     "updateButton": "更新点子",
+    "updateSuccess": "点子更新成功！",
+    "updateError": "更新点子时出错",
+    "editButton": "编辑点子",
     "deleteButton": "删除点子",
     "deleteConfirmTitle": "确认删除",
     "deleteConfirmText": "确定要删除这个点子"{title}"吗？此操作无法撤销。",
@@ -100,7 +103,9 @@
     "emptyFieldsError": "标题和描述都不能为空",
     "createSuccess": "点子创建成功！",
     "createError": "创建点子时出错",
-    "loginToComment": "登录后参与评论"
+    "loginToComment": "登录后参与评论",
+    "redirectingToDetail": "正在重定向到点子详情页...",
+    "editFeatureInline": "我们已采用内联编辑功能，请直接在点子详情页编辑您的点子。"
   },
   "common": {
     "loading": "加载中...",

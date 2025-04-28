@@ -43,6 +43,7 @@
         @like="toggleLike"
         @comment="focusCommentInput"
         @delete="confirmDeleteIdea"
+        @update="handleIdeaUpdate"
       />
       
       <!-- 评论区 -->
@@ -99,7 +100,8 @@ const {
   confirmDeleteIdea,
   cancelDelete,
   deleteIdea,
-  formatDate
+  formatDate,
+  updateIdea
 } = useIdeaDetail(ideaId.value)
 
 // 评论区组件引用
@@ -116,6 +118,12 @@ function focusCommentInput() {
       block: 'start' 
     })
   }
+}
+
+// 处理点子更新
+function handleIdeaUpdate(updatedIdea: any) {
+  console.log('[id].vue: handleIdeaUpdate received:', updatedIdea);
+  updateIdea(updatedIdea);
 }
 
 // 新增处理函数

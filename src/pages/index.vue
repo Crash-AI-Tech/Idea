@@ -112,65 +112,57 @@
     
     <!-- 点子列表 -->
     <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div 
+      <NuxtLink 
         v-for="idea in filteredIdeas" 
         :key="idea.id" 
-        class="bg-white rounded-lg shadow-sm border border-tech-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300 relative"
+        :to="`/ideas/${idea.id}`"
+        class="bg-white rounded-lg shadow-sm border border-tech-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300 relative block cursor-pointer"
       >
-        <!-- 删除按钮 (如果是用户自己的点子) -->
-        <button 
-          v-if="user && idea.user_id === user.id"
-          @click.prevent="confirmDeleteIdea(idea)"
-          class="absolute top-2 right-2 bg-tech-gray-100 hover:bg-tech-gray-200 p-1.5 rounded-full text-tech-gray-600 hover:text-red-500 transition-colors duration-200 z-10"
-          :title="$t('idea.deleteButton')"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-          </svg>
-        </button>
-        
-        <NuxtLink :to="`/ideas/${idea.id}`" class="block h-full">
-          <div class="p-6">
-            <h2 class="text-xl font-bold text-tech-gray-800 mb-2 hover:text-primary-green transition-colors">{{ idea.title }}</h2>
-            
-            <!-- 标签 -->
-            <div v-if="processTags(idea.tags).length > 0" class="flex flex-wrap gap-1 mb-3">
-              <span 
-                v-for="tag in processTags(idea.tags)" 
-                :key="tag" 
-                class="inline-block px-2 py-1 text-xs bg-light-green text-primary-green rounded-full"
-              >
-                {{ tag }}
+        <div class="p-6">
+          <h2 class="text-xl font-bold text-tech-gray-800 mb-2 hover:text-primary-green transition-colors">{{ idea.title }}</h2>
+          
+          <!-- 标签 -->
+          <div v-if="processTags(idea.tags).length > 0" class="flex flex-wrap gap-1 mb-3">
+            <span 
+              v-for="tag in processTags(idea.tags)" 
+              :key="tag" 
+              class="inline-block px-2 py-1 text-xs bg-light-green text-primary-green rounded-full"
+            >
+              {{ tag }}
+            </span>
+          </div>
+          
+          <p class="text-tech-gray-600 text-sm mb-3">{{ formatDate(idea.created_at) }}</p>
+          
+          <p class="text-tech-gray-700 line-clamp-3">{{ idea.description }}</p>
+          
+          <div class="flex justify-between items-center mt-4 text-sm text-tech-gray-500">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                </svg>
+                {{ idea.likes_count || 0 }}
+              </span>
+              <span class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                </svg>
+                {{ idea.comments_count || 0 }}
               </span>
             </div>
             
-            <p class="text-tech-gray-600 mb-4 line-clamp-3">{{ idea.description }}</p>
-            
-            <div class="flex items-center justify-between text-sm text-tech-gray-500">
-              <span>{{ formatDate(idea.created_at) }}</span>
-              <div class="flex items-center space-x-4">
-                <span class="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                  </svg>
-                  {{ idea.likes_count || 0 }}
-                </span>
-                <span class="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                  </svg>
-                  {{ idea.comments_count || 0 }}
-                </span>
-              </div>
-            </div>
+            <span class="inline-block rounded-full px-3 py-1 bg-light-green text-primary-green text-xs font-medium">
+              {{ $t('common.details') }} →
+            </span>
           </div>
-        </NuxtLink>
-      </div>
+        </div>
+      </NuxtLink>
     </div>
     
     <!-- 删除确认对话框 -->
     <div v-if="showDeleteConfirm" class="fixed inset-0 bg-tech-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-tech-white p-6 rounded-lg shadow-xl max-w-md w-full">
+      <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
         <h3 class="text-lg font-semibold text-tech-gray-800 mb-3">{{ $t('idea.deleteConfirmTitle') }}</h3>
         <p class="text-tech-gray-600 mb-4">{{ $t('idea.deleteConfirmText', { title: ideaToDelete?.title }) }}</p>
         <div class="flex justify-end space-x-3">
