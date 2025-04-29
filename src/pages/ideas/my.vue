@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4 py-8 bg-gray-50">
     <!-- 头部区域 -->
     <div class="flex justify-between items-center mb-8">
-      <h1 class="text-3xl font-bold text-tech-gray-800">{{ $t('home.title') }}</h1>
+      <h1 class="text-3xl font-bold text-tech-gray-800">{{ $t('myIdeas.title') }}</h1>
       <NuxtLink 
         to="/ideas/new" 
         class="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-medium py-2 px-4 rounded-xl transition-colors duration-200 flex items-center shadow-md"
@@ -15,35 +15,8 @@
       </NuxtLink>
     </div>
     
-    <!-- 标签和筛选区域 -->
+    <!-- 排序选项 -->
     <div class="mb-6 bg-white p-4 rounded-xl border border-tech-gray-200 shadow-sm">
-      <div class="mb-4">
-        <h3 class="text-sm font-medium text-tech-gray-700 mb-2 flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-pink-500" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-          </svg>
-          {{ $t('home.filterByTag') }}
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          <button
-            @click="selectedTag = ''"
-            class="px-3 py-1 rounded-full text-sm transition-all duration-200 shadow-sm hover:shadow"
-            :class="!selectedTag ? 'bg-gradient-to-r from-green-400 to-green-600 text-white' : 'bg-tech-gray-100 text-tech-gray-700 hover:bg-tech-gray-200'"
-          >
-            {{ $t('home.allTags') }}
-          </button>
-          <button
-            v-for="tag in allTags"
-            :key="tag"
-            @click="selectedTag = tag"
-            class="px-3 py-1 rounded-full text-sm transition-all duration-200 shadow-sm hover:shadow"
-            :class="selectedTag === tag ? 'bg-gradient-to-r from-green-400 to-green-600 text-white' : 'bg-tech-gray-100 text-tech-gray-700 hover:bg-tech-gray-200'"
-          >
-            {{ tag }}
-          </button>
-        </div>
-      </div>
-      
       <div>
         <h3 class="text-sm font-medium text-tech-gray-700 mb-2 flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
@@ -84,53 +57,35 @@
     </div>
     
     <!-- 空状态 -->
-    <div v-else-if="filteredIdeas.length === 0" class="text-center py-16 bg-white rounded-xl shadow-sm border border-tech-gray-200">
+    <div v-else-if="myIdeas.length === 0" class="text-center py-16 bg-white rounded-xl shadow-sm border border-tech-gray-200">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-pink-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
-      <h3 class="text-xl font-semibold text-tech-gray-800 mb-2">
-        {{ selectedTag ? $t('home.noIdeasWithTag', { tag: selectedTag }) : $t('home.noIdeas') }}
-      </h3>
-      <p class="text-tech-gray-600 mb-6">{{ selectedTag ? $t('home.tryOtherTag') : $t('home.beFirst') }}</p>
+      <h3 class="text-xl font-semibold text-tech-gray-800 mb-2">{{ $t('myIdeas.noIdeas') }}</h3>
+      <p class="text-tech-gray-600 mb-6">{{ $t('myIdeas.noIdeasDesc') }}</p>
       
       <div class="space-x-3">
-        <button 
-          v-if="selectedTag"
-          @click="selectedTag = ''"
-          class="inline-block bg-tech-gray-100 hover:bg-tech-gray-200 text-tech-gray-700 font-medium py-2 px-6 rounded-xl transition-colors duration-200 shadow-sm"
-        >
-          {{ $t('home.clearFilter') }}
-        </button>
-        
         <NuxtLink 
           to="/ideas/new" 
           class="inline-block bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-medium py-2 px-6 rounded-xl transition-colors duration-200 shadow-md"
-          v-if="user"
         >
-          {{ $t('home.addFirstIdea') }}
-        </NuxtLink>
-        
-        <NuxtLink 
-          to="/login" 
-          class="inline-block bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-medium py-2 px-6 rounded-xl transition-colors duration-200 shadow-md"
-          v-else
-        >
-          {{ $t('home.loginToAdd') }}
+          {{ $t('myIdeas.createFirst') }}
         </NuxtLink>
       </div>
     </div>
     
     <!-- Pinterest风格的瀑布流布局 -->
     <div v-else class="masonry-grid">
-      <NuxtLink 
-        v-for="(idea, index) in filteredIdeas" 
+      <div 
+        v-for="(idea, index) in myIdeas" 
         :key="idea.id" 
-        :to="`/ideas/${idea.id}`"
         class="idea-card bg-white rounded-xl shadow-sm hover:shadow-xl border border-tech-gray-200 overflow-hidden transform hover:-translate-y-1 mb-6 relative"
         :style="{ '--index': index }"
       >
         <div class="p-4">
-          <h2 class="text-xl font-bold text-tech-gray-800 mb-2 hover:text-primary-green transition-colors">{{ idea.title }}</h2>
+          <NuxtLink :to="`/ideas/${idea.id}`">
+            <h2 class="text-xl font-bold text-tech-gray-800 mb-2 hover:text-primary-green transition-colors">{{ idea.title }}</h2>
+          </NuxtLink>
           
           <!-- 标签 -->
           <div v-if="processTags(idea.tags).length > 0" class="flex flex-wrap gap-1 mb-3">
@@ -169,8 +124,30 @@
             
             <span class="text-xs bg-gray-100 px-2 py-1 rounded-full text-tech-gray-500">{{ formatDate(idea.created_at) }}</span>
           </div>
+          
+          <!-- 操作按钮 -->
+          <div class="flex justify-end mt-4 space-x-2">
+            <NuxtLink 
+              :to="`/ideas/edit/${idea.id}`" 
+              class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 transition-colors px-3 py-1 rounded-lg text-sm font-medium flex items-center"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              {{ $t('myIdeas.edit') }}
+            </NuxtLink>
+            <button 
+              @click.prevent="confirmDeleteIdea(idea)"
+              class="text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 transition-colors px-3 py-1 rounded-lg text-sm font-medium flex items-center"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              {{ $t('myIdeas.delete') }}
+            </button>
+          </div>
         </div>
-      </NuxtLink>
+      </div>
     </div>
     
     <!-- 删除确认对话框 -->
@@ -198,97 +175,81 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { useI18n } from '#imports'
+import { useRoute } from 'vue-router'
 import type { Database } from '~/types/supabase'
 import { processTags } from '~/utils/tagsHelper'
 
+definePageMeta({
+  middleware: ['auth']
+})
+
 const { t, locale } = useI18n()
+const route = useRoute()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient<Database>()
 const loading = ref(true)
-const ideas = ref<any[]>([])
+const myIdeas = ref<any[]>([])
 
-// 排序和筛选变量
-const selectedTag = ref('')
+// 排序变量
 const sortBy = ref('newest') // 'newest', 'popular', 'comments'
-const allTags = ref<string[]>([])
 
 // 删除相关变量
 const showDeleteConfirm = ref(false)
 const ideaToDelete = ref<any>(null)
 
-// 筛选后的点子列表
-const filteredIdeas = computed(() => {
-  let result = [...ideas.value]
-  
-  // 标签筛选
-  if (selectedTag.value) {
-    result = result.filter(idea => {
-      const tags = processTags(idea.tags);
-      return tags.includes(selectedTag.value);
-    });
-  }
-  
-  // 排序
-  if (sortBy.value === 'newest') {
-    result.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-  } else if (sortBy.value === 'popular') {
-    result.sort((a, b) => (b.likes_count || 0) - (a.likes_count || 0))
-  } else if (sortBy.value === 'comments') {
-    result.sort((a, b) => (b.comments_count || 0) - (a.comments_count || 0))
-  }
-  
-  return result
-})
-
 onMounted(async () => {
-  await fetchIdeas()
-  collectAllTags()
+  await fetchMyIdeas()
 })
 
-// 获取所有点子
-async function fetchIdeas() {
+watch(sortBy, () => {
+  sortIdeas()
+})
+
+// 获取当前用户的点子
+async function fetchMyIdeas() {
+  if (!user.value) return
+
   try {
     loading.value = true
     
-    // 通过SQL查询统计每个点子的点赞和评论数
+    // 获取当前用户创建的点子
     const { data, error } = await supabase
       .from('ideas')
       .select('id, title, description, user_id, created_at, tags, likes:likes(count), comments:comments(count)')
+      .eq('user_id', user.value.id)
       .order('created_at', { ascending: false })
     
     if (error) throw error
     
     if (data) {
       // 转换数据，提取点赞和评论计数
-      ideas.value = data.map(idea => ({
+      myIdeas.value = data.map(idea => ({
         ...idea,
         likes_count: idea.likes?.[0]?.count || 0,
         comments_count: idea.comments?.[0]?.count || 0,
-        // 确保tags是正确的格式
-        tags: idea.tags // 标签将由processTags函数处理
+        tags: idea.tags
       }))
       
-      collectAllTags()
+      sortIdeas()
     }
   } catch (error) {
-    console.error('Error fetching ideas:', error)
+    console.error('Error fetching my ideas:', error)
   } finally {
     loading.value = false
   }
 }
 
-// 收集所有标签
-function collectAllTags() {
-  const tagSet = new Set<string>()
-  
-  ideas.value.forEach(idea => {
-    const tags = processTags(idea.tags);
-    tags.forEach(tag => tagSet.add(tag));
-  })
-  
-  allTags.value = Array.from(tagSet)
+// 根据选择的排序方式对点子进行排序
+function sortIdeas() {
+  if (sortBy.value === 'newest') {
+    myIdeas.value.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+  } else if (sortBy.value === 'popular') {
+    myIdeas.value.sort((a, b) => (b.likes_count || 0) - (a.likes_count || 0))
+  } else if (sortBy.value === 'comments') {
+    myIdeas.value.sort((a, b) => (b.comments_count || 0) - (a.comments_count || 0))
+  }
 }
 
 // 格式化日期
@@ -313,22 +274,19 @@ function cancelDelete() {
 }
 
 async function deleteIdea() {
-  if (!ideaToDelete.value) return
+  if (!ideaToDelete.value || !user.value) return
   
   try {
     const { error } = await supabase
       .from('ideas')
       .delete()
       .eq('id', ideaToDelete.value.id)
-      .eq('user_id', user.value?.id) // 确保只能删除自己的点子
+      .eq('user_id', user.value.id) // 确保只能删除自己的点子
     
     if (error) throw error
     
     // 从本地列表中移除
-    ideas.value = ideas.value.filter(idea => idea.id !== ideaToDelete.value.id)
-    
-    // 更新标签
-    collectAllTags()
+    myIdeas.value = myIdeas.value.filter(idea => idea.id !== ideaToDelete.value.id)
     
     // 关闭对话框
     showDeleteConfirm.value = false
@@ -341,7 +299,7 @@ async function deleteIdea() {
 }
 </script>
 
-<style>
+<style scoped>
 /* Pinterest风格的瀑布流布局 */
 .masonry-grid {
   column-count: 1;
@@ -425,37 +383,5 @@ async function deleteIdea() {
   animation: fadeIn 0.6s ease forwards;
   animation-delay: calc(var(--index) * 0.1s);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* 标签增加渐变色彩 */
-.idea-card:nth-child(4n+1) .bg-light-green {
-  background: linear-gradient(to right, #FFE2E2, #FFC0CB);
-  color: #C72C41;
-}
-
-.idea-card:nth-child(4n+2) .bg-light-green {
-  background: linear-gradient(to right, #E0F7FA, #B2EBF2);
-  color: #0277BD;
-}
-
-.idea-card:nth-child(4n+3) .bg-light-green {
-  background: linear-gradient(to right, #E8EAFC, #D4DAFF);
-  color: #4834D4;
-}
-
-.idea-card:nth-child(4n+4) .bg-light-green {
-  background: linear-gradient(to right, #FFF4E6, #FFE2B7);
-  color: #E67E22;
-}
-
-/* 点赞和评论图标悬停效果 */
-.idea-card .flex.items-center.bg-pink-50:hover {
-  background-color: rgba(252, 231, 243, 0.8);
-  box-shadow: 0 2px 4px rgba(244, 114, 182, 0.2);
-}
-
-.idea-card .flex.items-center.bg-blue-50:hover {
-  background-color: rgba(219, 234, 254, 0.8);
-  box-shadow: 0 2px 4px rgba(96, 165, 250, 0.2);
 }
 </style>

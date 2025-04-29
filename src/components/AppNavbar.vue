@@ -38,16 +38,17 @@
             </svg>
           </NuxtLink>
           
-          <!-- 创建新点子按钮 - 只显示给登录用户 -->
+          <!-- 我的点子按钮 - 只显示给登录用户 -->
           <NuxtLink 
             v-if="user"
-            to="/ideas/new" 
+            to="/ideas/my" 
             class="text-tech-gray-600 hover:text-primary-green px-3 py-2 rounded-full transition-all duration-200 hover:-translate-y-1 flex items-center"
+            active-class="text-primary-green font-medium"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
             </svg>
-            <span class="hidden md:inline ml-1">{{ $t('idea.newTitle') }}</span>
+            <span class="hidden md:inline ml-1">{{ $t('app.header.myIdeas') }}</span>
           </NuxtLink>
           
           <!-- 语言切换器 -->
@@ -101,6 +102,13 @@
                 :class="{ 'text-right': $i18n.locale === 'ar' }"
               >
                 {{ $t('app.header.home') }}
+              </NuxtLink>
+              <NuxtLink
+                to="/ideas/my"
+                class="block w-full text-left px-4 py-2 text-tech-gray-700 hover:text-primary-green hover:bg-tech-gray-50 transition-colors"
+                :class="{ 'text-right': $i18n.locale === 'ar' }"
+              >
+                {{ $t('app.header.myIdeas') }}
               </NuxtLink>
               <NuxtLink
                 to="/ideas/new"

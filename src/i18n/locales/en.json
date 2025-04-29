@@ -5,6 +5,7 @@
     "header": {
       "home": "Home",
       "newIdea": "New Idea",
+      "myIdeas": "My Ideas",
       "login": "Login",
       "register": "Register",
       "logout": "Logout"
@@ -114,5 +115,13 @@
     "error": "An error occurred.",
     "back": "Back",
     "cancel": "Cancel"
+  },
+  "myIdeas": {
+    "title": "My Ideas",
+    "noIdeas": "You haven't created any ideas yet",
+    "noIdeasDesc": "Create a new idea to share your innovative thoughts!",
+    "createFirst": "Create First Idea",
+    "edit": "Edit",
+    "delete": "Delete"
   }
 }
