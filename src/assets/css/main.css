@@ -19,6 +19,37 @@ body {
   @apply bg-green-600;
 }
 
+/* Pinterest风格的配色方案 */
+.bg-pinterest-red {
+  @apply bg-red-600;
+}
+
+.bg-pinterest-blue {
+  @apply bg-blue-500;
+}
+
+.bg-pinterest-purple {
+  @apply bg-purple-600;
+}
+
+.bg-pinterest-orange {
+  @apply bg-orange-500;
+}
+
+/* 卡片样式 */
+.card-rounded {
+  @apply rounded-xl;
+}
+
+.hover-shadow {
+  transition: all 0.3s ease;
+}
+
+.hover-shadow:hover {
+  @apply shadow-lg;
+  transform: translateY(-3px);
+}
+
 .hover-primary-green:hover {
   @apply bg-green-700;
 }

@@ -1,6 +1,7 @@
 {
   "app": {
     "title": "Idea Hub",
+    "search": "Search ideas...",
     "header": {
       "home": "Home",
       "newIdea": "New Idea",
@@ -18,7 +19,13 @@
       "companyName": "Jade Bamboo Intelligence",
       "rights": "All Rights Reserved",
       "shareCta": "Have a business idea? Share it with the community now!",
-      "shareButton": "Share My Idea"
+      "shareButton": "Share My Idea",
+      "quickLinks": "Quick Links",
+      "discover": "Discover Ideas",
+      "popular": "Popular Ideas",
+      "resources": "Resources",
+      "shareDescription": "Share your innovative ideas and get feedback from our community of entrepreneurs and innovators.",
+      "cookies": "Cookies Policy"
     }
   },
   "home": {
