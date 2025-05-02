@@ -29,7 +29,13 @@ export function useIdeaDetail(ideaId: string) {
   const creatorName = computed(() => {
     if (!idea.value) return '未知用户'
     if (idea.value.user_id === user.value?.id) return '你'
-    return '用户' // 如果需要显示用户名，可以从用户表获取
+    
+    // 使用从用户表中查询到的创建者信息
+    if (idea.value.creator) {
+      return idea.value.creator.nickname || '用户'
+    }
+    
+    return '用户' // 默认值
   })
 
   onMounted(async () => {
@@ -49,6 +55,7 @@ export function useIdeaDetail(ideaId: string) {
       loading.value = true
       error.value = null
       
+      // 先获取点子信息
       const { data, error: err } = await supabase
         .from('ideas')
         .select('*')
@@ -61,6 +68,25 @@ export function useIdeaDetail(ideaId: string) {
       // 确保标签被正确处理
       if (data.tags) {
         data.tags = processTags(data.tags);
+      }
+      
+      // 再获取创建者信息
+      if (data.user_id) {
+        try {
+          const { data: userData } = await supabase
+            .from('users')
+            .select('raw_user_meta_data')
+            .eq('id', data.user_id)
+            .single()
+          
+          if (userData && userData.raw_user_meta_data) {
+            data.creator = {
+              nickname: userData.raw_user_meta_data.nickname
+            }
+          }
+        } catch (userErr) {
+          console.error('Error fetching creator info:', userErr)
+        }
       }
       
       idea.value = data
@@ -78,6 +104,7 @@ export function useIdeaDetail(ideaId: string) {
   // 获取该点子的评论列表
   async function fetchComments() {
     try {
+      // 获取评论信息
       const { data, error: err } = await supabase
         .from('comments')
         .select('*')
@@ -85,6 +112,35 @@ export function useIdeaDetail(ideaId: string) {
         .order('created_at', { ascending: false })
       
       if (err) throw err
+      
+      // 如果有评论，获取每个评论者的信息
+      if (data && data.length > 0) {
+        // 收集所有评论者ID
+        const userIds = [...new Set(data.map(comment => comment.user_id))];
+        
+        // 批量获取用户信息
+        const { data: usersData } = await supabase
+          .from('users')
+          .select('id, raw_user_meta_data')
+          .in('id', userIds);
+        
+        // 用户ID -> 昵称的映射
+        const userNicknames: Record<string, string | null> = {};
+        if (usersData) {
+          usersData.forEach(user => {
+            if (user.id && user.raw_user_meta_data) {
+              userNicknames[user.id] = user.raw_user_meta_data.nickname || null;
+            }
+          });
+        }
+        
+        // 将用户昵称添加到评论数据中
+        data.forEach(comment => {
+          comment.commenter = {
+            nickname: comment.user_id && userNicknames[comment.user_id] || null
+          };
+        });
+      }
       
       comments.value = data || []
     } catch (err: any) {
@@ -189,7 +245,12 @@ export function useIdeaDetail(ideaId: string) {
           idea_id: ideaId,
           user_id: user.value.id
         })
-        .select()
+        .select(`
+          *,
+          commenter:user_id (
+            nickname:raw_user_meta_data->nickname
+          )
+        `)
         .single()
 
       if (err) {

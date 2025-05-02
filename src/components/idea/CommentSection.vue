@@ -74,9 +74,9 @@
         <div class="flex justify-between items-start mb-2">
           <div class="font-semibold text-tech-gray-800 flex items-center">
             <span class="inline-block h-6 w-6 rounded-full bg-primary-green text-white text-xs flex items-center justify-center mr-2">
-              {{ (comment.user_id === user?.id ? $t('idea.you') : $t('idea.user')).charAt(0) }}
+              {{ getUserInitial(comment) }}
             </span>
-            {{ comment.user_id === user?.id ? $t('idea.you') : $t('idea.user') }}
+            {{ getUserDisplayName(comment) }}
           </div>
           <div class="text-sm text-tech-gray-500">{{ formatDate(comment.created_at) }}</div>
         </div>
@@ -140,6 +140,28 @@ onMounted(() => {
     }, 100);
   }
 })
+
+// 获取用户昵称或默认值
+function getUserDisplayName(comment: any) {
+  if (comment.user_id === props.user?.id) {
+    return t('idea.you')
+  }
+  if (comment.commenter && comment.commenter.nickname) {
+    return comment.commenter.nickname
+  }
+  return t('idea.user')
+}
+
+// 获取用户昵称或默认值的首字母
+function getUserInitial(comment: any) {
+  if (comment.user_id === props.user?.id) {
+    return t('idea.you').charAt(0).toUpperCase()
+  }
+  if (comment.commenter && comment.commenter.nickname) {
+    return comment.commenter.nickname.charAt(0).toUpperCase()
+  }
+  return t('idea.user').charAt(0).toUpperCase()
+}
 </script>
 
 <style scoped>

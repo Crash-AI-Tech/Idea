@@ -15,6 +15,18 @@
           />
         </div>
         <div class="mb-4">
+          <label for="nickname" class="block text-medium-text text-sm font-bold mb-2">{{ $t('auth.nickname') }}:</label>
+          <input 
+            type="text" 
+            id="nickname" 
+            v-model="nickname" 
+            required 
+            class="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-dark-bg text-light-text leading-tight focus:outline-none focus:shadow-outline focus:border-primary-green"
+            :placeholder="$t('auth.nicknamePlaceholder')"
+          />
+          <p class="text-medium-text text-xs mt-1">{{ $t('auth.nicknameHelp') }}</p>
+        </div>
+        <div class="mb-4">
           <label for="password" class="block text-medium-text text-sm font-bold mb-2">{{ $t('auth.password') }}:</label>
           <input 
             type="password" 
@@ -61,6 +73,7 @@ const { t } = useI18n()
 const client = useSupabaseClient()
 const router = useRouter()
 const email = ref('')
+const nickname = ref('')
 const password = ref('')
 const passwordConfirm = ref('')
 const errorMsg = ref<string | null>(null)
@@ -81,6 +94,9 @@ const registerUser = async () => {
       email: email.value,
       password: password.value,
       options: {
+        data: {
+          nickname: nickname.value.trim()
+        },
         emailRedirectTo: `${window.location.origin}/confirm`
       }
     })

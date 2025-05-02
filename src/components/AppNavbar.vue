@@ -79,9 +79,9 @@
               :class="{'space-x-reverse': $i18n.locale === 'ar'}"
             >
               <div class="w-8 h-8 bg-primary-green text-white rounded-full flex items-center justify-center font-medium">
-                {{ user.email ? user.email.charAt(0).toUpperCase() : 'U' }}
+                {{ getUserInitial() }}
               </div>
-              <span class="truncate max-w-[100px] hidden md:inline">{{ user.email }}</span>
+              <span class="truncate max-w-[100px] hidden md:inline">{{ getUserDisplayName() }}</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" :class="{'transform rotate-180': isDropdownOpen}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -94,7 +94,8 @@
               :class="{ 'left-0': $i18n.locale === 'ar', 'right-0': $i18n.locale !== 'ar' }"
             >
               <div class="px-4 py-2 border-b border-tech-gray-100 mb-1">
-                <div class="text-sm text-tech-gray-500 truncate">{{ user.email }}</div>
+                <div class="text-sm text-tech-gray-500 truncate">{{ getUserDisplayName() }}</div>
+                <div class="text-xs text-tech-gray-400 truncate">{{ user.email }}</div>
               </div>
               <NuxtLink
                 to="/"
@@ -177,6 +178,24 @@ const logout = async () => {
   } catch (error) {
     console.error('登出错误:', error)
   }
+}
+
+// 获取用户昵称或邮箱
+const getUserDisplayName = () => {
+  if (!user.value) return ''
+  if (user.value.user_metadata && user.value.user_metadata.nickname) {
+    return user.value.user_metadata.nickname
+  }
+  return user.value.email || ''
+}
+
+// 获取用户昵称或邮箱的首字母
+const getUserInitial = () => {
+  if (!user.value) return 'U'
+  if (user.value.user_metadata && user.value.user_metadata.nickname) {
+    return user.value.user_metadata.nickname.charAt(0).toUpperCase()
+  }
+  return user.value.email ? user.value.email.charAt(0).toUpperCase() : 'U'
 }
 </script>
 
