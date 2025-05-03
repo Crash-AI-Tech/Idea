@@ -67,5 +67,6 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/main.css', // 假设你有全局样式
     '~/assets/css/rtl.css'   // 全局 RTL 样式
-  ]
+  ],
+  baseUrl: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'
 })
