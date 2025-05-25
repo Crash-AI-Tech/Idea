@@ -25,21 +25,21 @@ import LanguageSwitcher from "~/components/LanguageSwitcher.vue";
 <style>
 /* 保留全局样式和布局样式 */
 :root {
-  --primary-color: #007bff;
-  --primary-hover-color: #0056b3;
-  --secondary-color: #6c757d;
+--primary-color: #28a745; /* 明亮的绿色 */
+  --primary-hover-color: #1e7e34; /* 主色调的深色悬停状态 */
+  --secondary-color: #6c757d; /* 保持不变，或选择一个与绿色搭配的颜色，如深灰色 */
   --background-color: #f8f9fa;
   --card-background-color: #ffffff;
   --text-color: #343a40;
   --light-text-color: #ffffff;
   --border-color: #dee2e6;
-  --success-color: #28a745;
+  --success-color: #28a745; /* 与主色调相同，或选择一个略有区别的成功绿色 */
   --error-color: #dc3545;
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --border-radius: 8px;
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --input-focus-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  --input-focus-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* 绿色调的聚焦阴影 */
 }
 
 #app-container {
